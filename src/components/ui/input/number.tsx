@@ -1,20 +1,20 @@
 import { Form, InputNumber, type InputNumberProps } from 'antd'
 import { useFieldContext } from '../../../context/form-context';
+import { type valueType } from 'antd/es/statistic/utils';
 
 type Props = {
-  label: string
+    label: string
 } & InputNumberProps
 
 export const Number = ({ label, ...rest }: Props) => {
-    const field = useFieldContext()
+    const field = useFieldContext<valueType>()
 
     const onChange: InputNumberProps['onChange'] = (value) => {
-        console.log('changed', value);
-        field.handleChange(value)
+        field.handleChange(value!)
+        console.log('Number State: ', field.state.value);
     };
 
     const onBlur: InputNumberProps['onBlur'] = () => {
-        console.log('blur');
         field.handleBlur()
     };
 
@@ -26,7 +26,7 @@ export const Number = ({ label, ...rest }: Props) => {
         >
             <InputNumber
                 {...rest}
-                value={field.state.value as number}
+                value={field.state.value}
                 onChange={onChange}
                 onBlur={onBlur}
             />

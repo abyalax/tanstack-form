@@ -1,13 +1,12 @@
 import { Button, type ButtonProps } from 'antd'
-import { useFormContext } from '../../context/form-context';
+// import { useFormContext } from '../../context/form-context';
 
 type Props = {
   label?: string
 } & ButtonProps
 
 export const Submit = ({ label = "Submit", ...rest }: Props) => {
-  const form = useFormContext()
-  console.log('state di button submit: ', form.state);
+  // const form = useFormContext()
 
   return (
     <Button

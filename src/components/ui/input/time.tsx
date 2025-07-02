@@ -1,16 +1,16 @@
-import { DatePicker, Form, type DatePickerProps } from 'antd'
+import { TimePicker, Form, type TimePickerProps } from 'antd'
 import { useFieldContext } from '../../../context/form-context';
 
 type Props = {
   label: string
-} & DatePickerProps
+} & TimePickerProps
 
-export const Date = ({ label, ...rest }: Props) => {
+export const Time = ({ label, ...rest }: Props) => {
   const field = useFieldContext<string | string[]>()
 
-  const onChange: DatePickerProps['onChange'] = (_date, dateString) => {
-    field.handleChange(dateString)
-    console.log('Datepicker State: ' ,field.state.value);
+  const onChange: TimePickerProps['onChange'] = (_time, timeString) => {
+    field.handleChange(timeString)
+    console.log('Timepicker State: ' ,field.state.value);
   };
 
   return (
@@ -21,7 +21,7 @@ export const Date = ({ label, ...rest }: Props) => {
       }
       help={field.state.meta.isTouched ? field.state.meta.errors?.[0]?.message : ''}
     >
-      <DatePicker {...rest} onChange={onChange} />
+      <TimePicker {...rest} onChange={onChange} />
     </Form.Item>
   )
 }

@@ -7,7 +7,12 @@ type Props = {
 } & InputProps
 
 export const Text = ({ label, ...rest }: Props) => {
-  const field = useFieldContext()
+  const field = useFieldContext<string>()
+
+  const onChange: InputProps["onChange"] = (e) => {
+    field.handleChange(e.target.value)
+    console.log('Text State: ', field.state.value);
+  }
 
   return (
     <Form.Item
@@ -20,7 +25,7 @@ export const Text = ({ label, ...rest }: Props) => {
       <Input
         {...rest}
         value={field.state.value as valueType}
-        onChange={(e) => field.handleChange(e.target.value)}
+        onChange={onChange}
         onBlur={field.handleBlur}
       />
     </Form.Item>

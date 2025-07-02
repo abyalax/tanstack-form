@@ -1,6 +1,6 @@
 import "./App.css"
-import { FormLogin } from "./example/form-login"
-import { FormRegistrasi } from "./example/form-registrasi"
+import { FormLogin } from "./example/login/form-login"
+import { FormRegistrasi } from "./example/register/form-registrasi"
 
 export default function App() {
 

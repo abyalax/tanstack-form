@@ -1,12 +1,21 @@
 import { Form, Select as SelectAntd, type SelectProps } from 'antd'
-import { useFieldContext } from '../../../context/form-context';
+import { useFieldContext } from '../../../context/form-context'
 
 type Props = {
   label: string
-} & SelectProps
+  options: {
+    label: string
+    value: string
+  }[]
+} & Omit<SelectProps<string>, 'options'>
 
-export const Select = ({ label, ...rest }: Props) => {
-  const field = useFieldContext()
+export const Select = ({ label, options, ...rest }: Props) => {
+  const field = useFieldContext<string>()
+
+  const onChange: SelectProps<string>['onChange'] = (value) => {
+    field.handleChange(value)
+    console.log('Select State: ', field.state.value);
+  }
 
   return (
     <Form.Item
@@ -20,17 +29,13 @@ export const Select = ({ label, ...rest }: Props) => {
         showSearch
         {...rest}
         value={field.state.value}
-        placeholder="Select a person"
+        placeholder="Select an option"
         filterOption={(input, option) =>
           (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
         }
-        options={[
-          { value: '1', label: 'Jack' },
-          { value: '2', label: 'Lucy' },
-          { value: '3', label: 'Tom' },
-        ]}
+        options={options}
         onBlur={field.handleBlur}
-        onChange={(e) => field.handleChange(e)}
+        onChange={onChange}
       />
     </Form.Item>
   )
