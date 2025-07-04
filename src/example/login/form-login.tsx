@@ -12,7 +12,7 @@ export const FormLogin = () => {
             {(form, Field) => {
                 const { AppForm, Submit } = form
                 const { email: Email, password: Password } = Field
-
+                
                 return (
                     <>
                         <Email.AppField name={Email.name}>
@@ -28,8 +28,7 @@ export const FormLogin = () => {
                         </AppForm>
                     </>
                 )
-            }
-            }
+            }}
 
         </Form>
     )

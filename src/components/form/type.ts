@@ -7,11 +7,6 @@ export type ZodFormSchema = z.ZodObject<any, any, any>
 
 export type FieldNameUnion<T extends ZodFormSchema> = Extract<keyof z.infer<T>, string>
 
-export type Params<TSchema extends ZodFormSchema> = {
-  schema: TSchema
-  AppField: ReturnType<typeof useForm>['AppField']
-}
-
 // type field yang dipakai di setiap key
 export type TypedField<K extends string> = {
   name: K

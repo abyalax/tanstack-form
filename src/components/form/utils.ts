@@ -1,4 +1,10 @@
-import type { ZodFormSchema, FieldNameUnion, TypedFormFields, Params, TypedField } from "./type"
+import type { ZodFormSchema, FieldNameUnion, TypedFormFields, TypedField } from "./type"
+import { useForm } from "../../hooks/use-form"
+
+type Params<TSchema extends ZodFormSchema> = {
+  schema: TSchema
+  AppField: ReturnType<typeof useForm>['AppField']
+}
 
 export function createTypedFields<TSchema extends ZodFormSchema>(
   { schema, AppField }: Params<TSchema>
@@ -15,5 +21,6 @@ export function createTypedFields<TSchema extends ZodFormSchema>(
     } as TypedField<typeof key>
   }
 
+  console.log('typedFields', typedFields);
   return typedFields
 }

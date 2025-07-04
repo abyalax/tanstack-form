@@ -18,6 +18,7 @@ export function FormSafe<TSchema extends ZodFormSchema>({
     },
     onSubmit: ({ value }) => onSubmit(value),
   })
+  
   // @ts-expect-error
   const typedFields = createTypedFields({ schema, AppField: form.AppField })
 
